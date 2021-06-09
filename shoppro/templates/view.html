@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block page_content %}
+<div class="row justify-content-center mt-3">
+    {% for x in products %}
+    <!-- Column -->
+    <div class="col-md-4 mb-4 d-flex align-items-stretch">
+        <!--Card-->
+        <div class="card">
+            <!--Card image-->
+            <div class="view overlay">
+                <a href=""><div
+                    style="background-image: url('{{x.image.url}}') ; background-repeat: no-repeat;
+                    background-position: center; background-size: 200px 200px; height: 300px; width: 300px; border: 1px solid lightgrey;">
+                </div></a>
+                <img src="" class="card-img-top" alt="">
+                <a href="#">
+                    <div class="mask rgba-white-slight"></div>
+                </a>
+            </div>
+            <!--Card content-->
+            <div class="card-body">
+                <!--Title-->
+                <h4 class="card-title">{{x.name}}</h4>
+                <!--Text-->
+                <p class="card-text">{{x.category}}</p>
+                <p class="card-text" id="quantity">{{x.quantity}}</p>
+                <p class="card-text text-success" id="price">&#8358; {{x.unit_price}}</p>
+            </div>
+            <div>
+                <button onclick="show()">Show more</button>
+            </div>
+            <div>
+                <button onclick="addit()">Calculate</button>
+            </div>
+            <div ></div>
+        </div>
+        
+        <!--/.Card-->
+    </div>
+    <!-- Column -->
+    {% endfor %}
+
+</div>
+{% endblock page_content %}

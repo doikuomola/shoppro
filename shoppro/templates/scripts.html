@@ -1,0 +1,94 @@
+{% load static %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
+
+    (($) => {
+
+        class Toggle {
+
+            constructor(element, options) {
+
+                this.defaults = {
+                    icon: 'fa-eye'
+                };
+
+                this.options = this.assignOptions(options);
+
+                this.$element = element;
+                this.$button = $(
+                    `<button class="btn-toggle-pass"><i class="fas ${this.options.icon}"></i></button>`);
+
+                this.init();
+            };
+
+            assignOptions(options) {
+
+                return $.extend({}, this.defaults, options);
+            }
+
+            init() {
+
+                this._appendButton();
+                this.bindEvents();
+            }
+
+            _appendButton() {
+                this.$element.before(this.$button);
+            }
+
+            bindEvents() {
+
+                this.$button.on('click touchstart', this.handleClick.bind(this));
+            }
+
+            handleClick() {
+
+                let type = this.$element.attr('type');
+
+                type = type === 'password' ? 'text' : 'password';
+
+                this.$element.attr('type', type);
+                this.$button.toggleClass('active');
+            }
+        }
+
+        $.fn.togglePassword = function (options) {
+            return this.each(function () {
+                new Toggle($(this), options);
+            });
+        }
+
+    })(jQuery);
+
+    $(document).ready(function () {
+        $('#password').togglePassword();
+        $('#password2').togglePassword();
+    })
+
+
+
+    function show() {
+        alert('Showing Product : {{x.id}}');
+        console.log()
+        window.open("showproductdetails/{{x.id}},'width=500, height=300")
+    };
+
+    function addit() {
+
+        var x = document.getElementById('quantity').value;
+        var y = document.getElementById('price').value;
+        console.log(y);
+        alert(x)
+
+    };
+</script>

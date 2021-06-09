@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block page_content %}
+    <h2>Upload Books</h2>
+   <form action="" method="post" enctype="multipart/form-data">
+       {% csrf_token %}
+       {{form.as_p}}
+       <button type="submit" class="btn btn-primary">Upload Book</button>
+   </form>
+
+{% endblock page_content %}
+    

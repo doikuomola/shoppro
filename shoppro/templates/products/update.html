@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<style>
+    .alert .m-0 li::marker{
+        list-style-type: none;
+        color: blue;
+    }
+</style>
+
+{% block page_content %}
+<div class="row justify-content-center m-5">
+    <div id="card" class="card " style="width: 30rem;">
+        <div class="card-body">
+            <!-- <h1 class="display-3 text-center">Log In</h1> -->
+            <hr>
+            <form action="" method="post">
+                <div class="form-group">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <div id="button">
+                        <button type="submit" class="btn btn-outline-primary">Update Product</button>
+                        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock page_content %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<h2>Products</h2>
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<table class="table" border="1">
+    <thead>
+        <tr>
+            <th>Name of Product</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td scope="row"> {{product.title}} </td>
+            <td>{{product.description}}</td>
+            <td>{{product.price}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock page_content %}

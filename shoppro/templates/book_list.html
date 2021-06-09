@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="container">
+    <h2>Books</h2>
+    <a href="{% url 'upload_book' %}" class="btn btn-primary mb-3">Upload Book</a>
+    <div class="row">
+        {% for book in books %}
+        <div class="col-4 mb-3 pb-3">
+            <div class="card" style="height: 10rem;">
+                {{ book.author}}
+                <div class="card-body">
+                    <h4 class="card-title"> {{ book.title }} </h4>
+                    <p class="card-text"><a href="{{book.pdf.url}}" class="btn btn-primary" target=_blank>Download
+                            PDF</a> </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<!-- <table class="table">
+       <a href="{% url 'upload_book' %}" class="btn btn-primary mb-3">Upload Book</a>
+       <thead>
+           <tr>
+               <th>Title</th>
+               <th>Author</th>
+               <th>Download</th>
+           </tr>
+       </thead>
+       <tbody>
+           {% for book in books %}
+           <td scope="row">{{book.title}}</td>
+           <td>{{book.author}}</td>
+           <td>
+               <a href="{{book.pdf.url}}" class="btn btn-primary" target="_blank">Download Pdf</a>
+            </td>
+       </tr>
+           {% endfor %}
+       </tbody>
+   </table> -->
+{% endblock page_content %}
